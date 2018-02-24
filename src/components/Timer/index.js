@@ -1,17 +1,13 @@
-import React, { Component } from 'react';
-import './Timer.css';
-import Button from '../Button' 
+import { connect } from 'react-redux';
+import Timer from './Presenter';
 
-class Timer extends Component {
-  render() {
-    return (
-      <div className="container">
-        <p className="number">25:00</p>
-        <Button onClick={()=>console.log('it works')}
-        />
-      </div>
-    );
+function mapStateToProps(state) {
+  const { isPlaying, elapsedTime, timeDuration } = state;
+  return {
+    isPlaying,
+   elapsedTime,
+   timeDuration
   }
 }
 
-export default Timer;
+export default connect(mapStateToProps)(Timer);

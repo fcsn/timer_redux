@@ -33,11 +33,27 @@ const initialState = {
 function reducer(state = initialState, action) {
     switch(action.type) {
         case START_TIMER:
-        return applyStartTimer(state, action);
+            return applyStartTimer(state, action);
         case RESTART_TIMER:
-        return applyReastartTimer(state, action);
+            return applyReastartTimer(state, action);
         case ADD_SECONDS:
-        return applyAddSeconds(state, action);
+            return applyAddSeconds(state, action);
+        default:
+            return state;
 
     }
 }
+
+function applyStartTimer() {
+    return;
+}
+
+function applyReastartTimer() {
+    return;
+}
+
+function applyAddSeconds() {
+    return;
+}
+
+export default reducer;

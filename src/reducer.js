@@ -28,7 +28,7 @@ const initialState = {
    isPlaying: false,
    elapsedTime: 0,
    timeDuration: TIME_DURATION
-}
+};
 
 function reducer(state = initialState, action) {
     switch(action.type) {
@@ -40,20 +40,46 @@ function reducer(state = initialState, action) {
             return applyAddSeconds(state, action);
         default:
             return state;
+        }
+}
 
+function applyStartTimer(state, action) {
+    return {
+        ...state,
+        isPlyaing: true
     }
 }
 
-function applyStartTimer() {
-    return;
+function applyReastartTimer(state, action) {
+    return{
+        ...state,
+        isPlaying: false,
+        elapsedTime: 0
+    }
 }
 
-function applyReastartTimer() {
-    return;
+function applyAddSeconds(state, action) {
+        const { elapsedTime } = state;
+        if(state.elapsedTime < TIME_DURATION ) {
+            return {
+                ...state,
+                elapsedTime: elapsedTime + 1
+            }
+        } else {
+            return {
+                ...state,
+                isPlaying: false
+            };
+        }
 }
 
-function applyAddSeconds() {
-    return;
+
+const actionCreators = {
+    startTimer,
+    restartTimer,
+    addSeconds
 }
 
 export default reducer;
+
+

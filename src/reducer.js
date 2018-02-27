@@ -80,6 +80,8 @@ const actionCreators = {
     addSeconds
 }
 
+export { actionCreators };
+
 export default reducer;
 
 

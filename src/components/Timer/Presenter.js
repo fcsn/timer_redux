@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import './Timer.css';
-import Button from '../Button' 
+// import Button from '../Button' 
+import FaPlayCircleO from 'react-icons/lib/fa/play-circle-o';
+import FaStopCircleO from 'react-icons/lib/fa/stop-circle-o';
 
 class Timer extends Component {
   render() {
-      console.log(this.props);
+    console.log(this.props)
+    const { isPlaying, elapsedTime, timerDuration, startTimer, restartTimer} = this.props;
     return (
       <div className="container">
         <p className="number">25:00</p>
-        <Button onClick={()=>console.log('it works')}
-        />
+        {!isPlaying && <div className="buttonContainer" onClick={this.props.startTimer}><FaPlayCircleO className="button"/></div>}
+        {isPlaying && <div className="buttonContainer" onClick={this.props.restartTimer}><FaStopCircleO className="button"/></div>}
       </div>
     );
   }

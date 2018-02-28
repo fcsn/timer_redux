@@ -8,6 +8,7 @@ function mapStateToProps(state) {
           elapsedTime, 
           timeDuration 
         } = state;
+        
   return {
     isPlaying,
    elapsedTime,
@@ -18,7 +19,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
  return {
    startTimer: bindActionCreators(timerActions.startTimer, dispatch),
-   restartTimer: bindActionCreators(timerActions.restartTimer, dispatch)
+   restartTimer: bindActionCreators(timerActions.restartTimer, dispatch),
+   addSeconds: bindActionCreators(timerActions.addSeconds, dispatch)
+  
  }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Timer);

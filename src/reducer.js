@@ -1,87 +1,95 @@
-const START_TIMER = 'START_TIMER';
-const RESTART_TIMER = 'RESTART_TIMER';
-const ADD_SECONDS = 'ADD_SECONDS';
+const START_TIMER = "START_TIMER";
+const RESTART_TIMER = "RESTART_TIMER";
+const ADD_SECOND = "ADD_SECOND";
 
-//action creators
+// Action Creators
+
 function startTimer() {
-    return {
-        type: START_TIMER
-    };
+  return {
+    type: START_TIMER
+  };
 }
 
 function restartTimer() {
-    return {
-        type: RESTART_TIMER
-    };
+  return {
+    type: RESTART_TIMER
+  };
 }
 
 function addSeconds() {
-    return {
-        type: ADD_SECONDS
-    };
+  return {
+    type: ADD_SECOND
+  };
 }
 
-//reducers
-const TIME_DURATION = 1500;
+// Reducer
+
+const TIMER_DURATION = 1500;
 
 const initialState = {
-   isPlaying: false,
-   elapsedTime: 0,
-   timeDuration: TIME_DURATION
+  isPlaying: false,
+  elapsedTime: 0,
+  timerDuration: TIMER_DURATION
 };
 
 function reducer(state = initialState, action) {
-    switch(action.type) {
-        case START_TIMER:
-            return applyStartTimer(state, action);
-        case RESTART_TIMER:
-            return applyReastartTimer(state, action);
-        case ADD_SECONDS:
-            return applyAddSeconds(state, action);
-        default:
-            return state;
-        }
+  switch (action.type) {
+    case START_TIMER:
+      return applyStartTimer(state, action);
+    case RESTART_TIMER:
+      return applyRestartTimer(state, action);
+    case ADD_SECOND:
+      return applyAddSeconds(state, action);
+    default:
+      return state;
+  }
 }
+
+// Reducer Functions
 
 function applyStartTimer(state, action) {
-    return {
-        ...state,
-        isPlyaing: true
-    }
+  return {
+    ...state,
+    isPlaying: true,
+    elapsedTime: 0
+  };
 }
 
-function applyReastartTimer(state, action) {
-    return{
-        ...state,
-        isPlaying: false,
-        elapsedTime: 0
-    }
+function applyRestartTimer(state, action) {
+  return {
+    ...state,
+    isPlaying: false,
+    elapsedTime: 0
+  };
 }
 
 function applyAddSeconds(state, action) {
-        const { elapsedTime } = state;
-        if(state.elapsedTime < TIME_DURATION ) {
-            return {
-                ...state,
-                elapsedTime: elapsedTime + 1
-            }
-        } else {
-            return {
-                ...state,
-                isPlaying: false
-            };
-        }
+  const { elapsedTime } = state;
+  if (elapsedTime < TIMER_DURATION) {
+    return {
+      ...state,
+      elapsedTime: elapsedTime + 1
+    };
+  } else {
+    return {
+      ...state,
+      isPlaying: false
+    };
+  }
 }
 
+// Exports
 
 const actionCreators = {
-    startTimer,
-    restartTimer,
-    addSeconds
-}
-
+  startTimer,
+  restartTimer,
+  addSeconds
+};
 export { actionCreators };
 
+// Default
+
 export default reducer;
+
 
 
